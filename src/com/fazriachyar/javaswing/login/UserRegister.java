@@ -20,13 +20,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-public class UserLogin extends JFrame {
+public class UserRegister extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textField;
+    private JTextField emailField;
     private JPasswordField passwordField;
     private JButton btnNewButton;
     private JLabel label;
@@ -51,7 +51,7 @@ public class UserLogin extends JFrame {
     /**
      * Create the frame.
      */
-    public UserLogin() {
+    public UserRegister() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(350, 90, 400, 600);
         setResizable(false);
@@ -60,22 +60,11 @@ public class UserLogin extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Selamat Datang");
+        JLabel lblNewLabel = new JLabel("Daftar");
         lblNewLabel.setForeground(Color.BLACK);
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        lblNewLabel.setBounds(110, 30, 273, 93);
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblNewLabel.setBounds(125, 30, 273, 93);
         contentPane.add(lblNewLabel);
-
-        textField = new JTextField();
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        textField.setBounds(125, 170, 150, 30);
-        contentPane.add(textField);
-        textField.setColumns(10);
-
-        passwordField = new JPasswordField();
-        passwordField.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        passwordField.setBounds(125, 245, 150, 30);
-        contentPane.add(passwordField);
 
         JLabel lblUsername = new JLabel("Username :");
         lblUsername.setBackground(Color.BLACK);
@@ -84,41 +73,78 @@ public class UserLogin extends JFrame {
         lblUsername.setBounds(125, 125, 150, 52);
         contentPane.add(lblUsername);
 
+        textField = new JTextField();
+        textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        textField.setBounds(125, 170, 150, 30);
+        contentPane.add(textField);
+        textField.setColumns(10);
+
+        JLabel lblEmail = new JLabel("Email :");
+        lblEmail.setForeground(Color.BLACK);
+        lblEmail.setBackground(Color.CYAN);
+        lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblEmail.setBounds(125, 200, 150, 52);
+        contentPane.add(lblEmail);
+
+        emailField = new JTextField();
+        emailField.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        emailField.setBounds(125, 245, 150, 30);
+        contentPane.add(emailField);
+        emailField.setColumns(10);
+
         JLabel lblPassword = new JLabel("Password :");
         lblPassword.setForeground(Color.BLACK);
         lblPassword.setBackground(Color.CYAN);
         lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblPassword.setBounds(125, 200, 150, 52);
+        lblPassword.setBounds(125, 270, 150, 52); 
         contentPane.add(lblPassword);
 
-        btnNewButton = new JButton("Login");
+        passwordField = new JPasswordField();
+        passwordField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        passwordField.setBounds(125, 315, 150, 30);
+        contentPane.add(passwordField);
+
+        btnNewButton = new JButton("Daftar");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnNewButton.setBounds(125, 290, 150, 52);
+        btnNewButton.setBounds(125, 360, 150, 52);
         btnNewButton.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 String userName = textField.getText();
+                String email = emailField.getText();
                 String password = passwordField.getText();
-
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/java_database",
                         "root", "");
 
                     PreparedStatement st = (PreparedStatement) connection
-                        .prepareStatement("Select nama, password from user where nama=? and password=?");
+                        .prepareStatement("Select nama from user where nama=?;");
 
                     st.setString(1, userName);
-                    st.setString(2, password);
                     ResultSet rs = st.executeQuery();
-                    if (rs.next()) {
-                        dispose();
-                        UserHome ah = new UserHome(userName);
-                        ah.setTitle("Welcome");
-                        ah.setVisible(true);
-                        JOptionPane.showMessageDialog(btnNewButton, "Anda Berhasil Masuk!");
+                    if (!rs.next()) {
+                        PreparedStatement std = (PreparedStatement) connection
+                            .prepareStatement("INSERT INTO `user` (`nama`, `email`, `password`, `created_at`, `updated_at`) VALUES (?, ?, ?, now(), null);\r\n");
+
+                        std.setString(1, userName);
+                        std.setString(2, email);
+                        std.setString(3, password);
+                        int rsd = std.executeUpdate();
+
+                        if (rsd == 1){
+                            dispose();
+                            UserLogin obj = new UserLogin();
+                            obj.setTitle("Login");
+                            obj.setVisible(true);
+                            JOptionPane.showMessageDialog(btnNewButton, "Anda Berhasil Daftar");
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(btnNewButton, "Gagal Mendaftar");
+                        }
                     } 
                     else {
-                        JOptionPane.showMessageDialog(btnNewButton, "Username Atau Password Salah!");
+                        JOptionPane.showMessageDialog(btnNewButton, "Username Sudah Terdaftar!");
                     }
                 } 
                 catch (SQLException sqlException) {
@@ -129,26 +155,11 @@ public class UserLogin extends JFrame {
                 }
             }
         });
+
         contentPane.add(btnNewButton);
 
         label = new JLabel("");
         label.setBounds(0, 0, 100, 50);
         contentPane.add(label);
-
-
-        
-        JButton button = new JButton("Daftar\r\n");
-        button.setBackground(UIManager.getColor("Button.disabledForeground"));
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                UserRegister bo = new UserRegister();
-                bo.setTitle("Daftar");
-                bo.setVisible(true);
-
-            }
-        });
-        button.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        button.setBounds(125, 350, 150, 52);
-        contentPane.add(button);
     }
 }

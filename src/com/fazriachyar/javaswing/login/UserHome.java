@@ -50,6 +50,7 @@ public class UserHome extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
+
         JButton btnNewButton = new JButton("Logout");
         btnNewButton.setForeground(new Color(0, 0, 0));
         btnNewButton.setBackground(UIManager.getColor("Button.disabledForeground"));
@@ -74,6 +75,7 @@ public class UserHome extends JFrame {
         });
         btnNewButton.setBounds(120, 170, 150, 30);
         contentPane.add(btnNewButton);
+
         JButton button = new JButton("Ubah password\r\n");
         button.setBackground(UIManager.getColor("Button.disabledForeground"));
         button.addActionListener(new ActionListener() {
