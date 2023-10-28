@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class ChangePassword extends JFrame {
+public class FazriAchyarChangePassword extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -45,7 +45,7 @@ public class ChangePassword extends JFrame {
     /**
      * Create the frame.
      */
-    public ChangePassword(String name) {
+    public FazriAchyarChangePassword(String name) {
         setBounds(450, 360, 190, 230);
         setResizable(false);
 
@@ -71,7 +71,7 @@ public class ChangePassword extends JFrame {
                     try {
                         Class.forName("com.mysql.cj.jdbc.Driver");
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(FazriAchyarChangePassword.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/java_database",
                         "root", "");

@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-public class UserLogin extends JFrame {
+public class FazriAchyarUserLogin extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textField;
@@ -39,7 +39,7 @@ public class UserLogin extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    UserLogin frame = new UserLogin();
+                    FazriAchyarUserLogin frame = new FazriAchyarUserLogin();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -51,7 +51,7 @@ public class UserLogin extends JFrame {
     /**
      * Create the frame.
      */
-    public UserLogin() {
+    public FazriAchyarUserLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(350, 90, 400, 600);
         setResizable(false);
@@ -112,7 +112,7 @@ public class UserLogin extends JFrame {
                     ResultSet rs = st.executeQuery();
                     if (rs.next()) {
                         dispose();
-                        UserHome ah = new UserHome(userName);
+                        FazriAchyarUserHome ah = new FazriAchyarUserHome(userName);
                         ah.setTitle("Welcome");
                         ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "Anda Berhasil Masuk!");
@@ -125,7 +125,7 @@ public class UserLogin extends JFrame {
                     sqlException.printStackTrace();
                 } 
                 catch (ClassNotFoundException ex) {
-                    Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FazriAchyarUserLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -134,17 +134,15 @@ public class UserLogin extends JFrame {
         label = new JLabel("");
         label.setBounds(0, 0, 100, 50);
         contentPane.add(label);
-
-
         
         JButton button = new JButton("Daftar\r\n");
         button.setBackground(UIManager.getColor("Button.disabledForeground"));
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                UserRegister bo = new UserRegister();
+                dispose();
+                FazriAchyarUserRegister bo = new FazriAchyarUserRegister();
                 bo.setTitle("Daftar");
                 bo.setVisible(true);
-
             }
         });
         button.setFont(new Font("Tahoma", Font.PLAIN, 17));

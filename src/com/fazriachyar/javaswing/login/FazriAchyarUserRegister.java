@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class UserRegister extends JFrame {
+public class FazriAchyarUserRegister extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textField;
@@ -39,7 +39,7 @@ public class UserRegister extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    UserLogin frame = new UserLogin();
+                    FazriAchyarUserLogin frame = new FazriAchyarUserLogin();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -51,7 +51,7 @@ public class UserRegister extends JFrame {
     /**
      * Create the frame.
      */
-    public UserRegister() {
+    public FazriAchyarUserRegister() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(350, 90, 400, 600);
         setResizable(false);
@@ -134,7 +134,7 @@ public class UserRegister extends JFrame {
 
                         if (rsd == 1){
                             dispose();
-                            UserLogin obj = new UserLogin();
+                            FazriAchyarUserLogin obj = new FazriAchyarUserLogin();
                             obj.setTitle("Login");
                             obj.setVisible(true);
                             JOptionPane.showMessageDialog(btnNewButton, "Anda Berhasil Daftar");
@@ -151,7 +151,7 @@ public class UserRegister extends JFrame {
                     sqlException.printStackTrace();
                 } 
                 catch (ClassNotFoundException ex) {
-                    Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FazriAchyarUserLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
