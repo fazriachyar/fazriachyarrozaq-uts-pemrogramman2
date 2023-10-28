@@ -25,17 +25,8 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 
 public class FazriAchyarUserHome extends JFrame {
 
