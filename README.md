@@ -7,11 +7,10 @@ Repository ini berisi program Java untuk kebutuhan UTS mata kuliah Pemrograman 2
 
 1. Halaman awal: Pengguna dapat memilih untuk login atau register.
 2. Halaman login: Pengguna memasukkan username dan password untuk masuk ke sistem.
-3. Halaman utama: Pengguna dapat melihat daftar mahasiswa, mengubah password, mengubah data mahasiswa, atau logout.
+3. Halaman utama: Pengguna dapat melihat daftar mahasiswa, mengubah password, atau logout.
 4. Halaman daftar mahasiswa: Pengguna dapat melihat daftar mahasiswa yang telah terdaftar di sistem.
 5. Halaman ubah password: Pengguna dapat mengubah password akunnya.
-6. Halaman ubah data mahasiswa: Pengguna dapat mengubah data mahasiswa, seperti nama, NIM, jurusan, dan alamat.
-7. Halaman logout: Pengguna keluar dari sistem.
+6. Halaman logout: Pengguna keluar dari sistem.
 
 ## Daftar program
 
@@ -20,8 +19,7 @@ Repository ini berisi program Java untuk kebutuhan UTS mata kuliah Pemrograman 2
 * **Program 3:** Lihat daftar mahasiswa
 * **Program 4:** Ubah password
 * **Program 5:** Ubah data mahasiswa
-* **Program 6:** Hapus data mahasiswa
-* **Program 7:** Logout
+* **Program 6:** Logout
 
 ## Petunjuk penggunaan
 
